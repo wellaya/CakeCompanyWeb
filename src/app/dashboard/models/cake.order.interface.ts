@@ -1,10 +1,8 @@
 export interface CakeOrder {
-    message: string;
-    firstName: string;
-    lastName: string;
-    location: string;
-    locale: string;
-    gender: string;
-    pictureUrl: string;
-   
+  shapeCode:string;
+  toppings:string;
+  size:number;
+  message:string;
+  identityId:string; 
+  totalPrice:number
   }

@@ -15,10 +15,12 @@ export class RegistrationFormComponent implements OnInit {
   errors: string;  
   isRequesting: boolean;
   submitted: boolean = false;
+ 
 
   constructor(private userService: UserService,private router: Router) { }
 
   ngOnInit() {
+
   }
 
   registerUser({ value, valid }: { value: UserRegistration, valid: boolean }) {

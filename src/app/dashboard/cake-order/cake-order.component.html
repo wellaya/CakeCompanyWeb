@@ -1,3 +1,84 @@
-<p>
-  cake-order works!
-</p>
+<div class="row">
+    <div class="col-md-6">
+      <h2>Please enter cake details</h2>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6">
+        <form #f="ngForm" novalidate (ngSubmit)="createOrder(f)">
+            <div class="form-group">
+                <label for="cake-shapes">Shape</label>
+                <ng-multiselect-dropdown
+                [placeholder]="'Select Shape'"
+                 [data]="shapeList"
+                 [(ngModel)]="selectedShape"
+                [settings]="shapeDropdownSettings"
+                (onDeSelect)="onShapeSelect($event)"
+                (onSelect)="onShapeSelect($event)"
+                [ngModelOptions]="{standalone: true}"
+               required
+            >
+        </ng-multiselect-dropdown>
+            </div>
+            <div class="form-group">
+                <label for="size">Size</label>
+                <ng-multiselect-dropdown
+                        [placeholder]="'Select Size'"
+                         [data]="sizeList"
+                         [(ngModel)]="selectedSize"
+                        [settings]="sizeDropdownSettings"
+                        (onSelect)="onSizeSelect($event)"
+                        (onDeSelect)="onSizeSelect($event)"
+                        [disabled]="!selectedShape || selectedShape==''"
+                        [ngModelOptions]="{standalone: true}"
+                    >
+                </ng-multiselect-dropdown>
+                
+            </div>
+            <div class="form-group">
+                <label for="topping">Toppings</label>
+                <ng-multiselect-dropdown
+                        [placeholder]="'Select Toppings'"
+                         [data]="toppingList"
+                         [(ngModel)]="selectedToppings"
+                        [settings]="toppingDropdownSettings"
+                        (onSelect)="onToppingSelect($event)"
+                        (onDeSelect)="onToppingSelect($event)"
+                        (onSelectAll)="onToppingSelectAll($event)"
+                        (onDeSelectAll)="onToppingSelectAll($event)"
+                        [ngModelOptions]="{standalone: true}"
+                        [disabled]="!selectedShape || selectedShape==''"
+                    >
+                </ng-multiselect-dropdown>
+                
+            </div>
+            <div class="form-group">
+             
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <input type="message" (input)="onMessageChange($event.target.value)" class="form-control" id="message" [disabled]="!selectedShape || selectedShape==''" maxlength="20" name="message" placeholder="Message"   [(ngModel)]="message" [ngModelOptions]="{standalone: true}">
+            </div>   
+            <div class="form-group">
+               <label for="price">Price</label>
+               <input type="number" class="form-control" id="price" [disabled]="true"  name="price" [(ngModel)]="price" [ngModelOptions]="{standalone: true}">              
+            </div> 
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" [disabled]="!selectedShape || selectedShape=='' || !selectedSize || selectedSize =='' || isRequesting" >Submit</button>
+                <app-spinner [isRunning]="isRequesting"></app-spinner> 
+            </div>
+  
+            <div *ngIf="errors" class="alert alert-danger" role="alert">
+                <strong>Oops!</strong> {{errors}}
+              </div>               
+              <div *ngIf="success" class="alert alert-success" role="alert">
+                <strong>{{success}}</strong> 
+              </div>  
+          </form>
+     </div>
+  </div>
+  
+  
+  

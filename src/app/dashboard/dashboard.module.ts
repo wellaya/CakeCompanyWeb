@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }        from '@angular/forms';
 import { SharedModule }       from '../shared/modules/shared.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { routing }  from './dashboard.routing';
 import { RootComponent } from './root/root.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardService } from './services/dashboard.service';
+import { CakeOrderService } from './services/cake-order.service';
 
 import { AuthGuard } from '../auth.guard';
 
@@ -18,10 +19,11 @@ import { CakeOrderComponent } from './cake-order/cake-order.component';
     CommonModule,
     FormsModule,
     routing,
-    SharedModule
+    SharedModule,
+    NgMultiSelectDropDownModule
   ],
   declarations: [RootComponent,HomeComponent,  CakeOrderComponent],
   exports:      [ ],
-  providers:    [AuthGuard,DashboardService]
+  providers:    [AuthGuard,CakeOrderService]
 })
 export class DashboardModule { }

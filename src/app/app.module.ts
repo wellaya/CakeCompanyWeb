@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
 import { HttpModule, XHRBackend } from '@angular/http';
 import { AuthenticateXHRBackend } from './authenticate-xhr.backend';
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { routing } from './app.routing';
 
 /* App Root */
@@ -30,7 +30,8 @@ import { ConfigService } from './shared/utils/config.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [ConfigService, { 
     provide: XHRBackend, 
